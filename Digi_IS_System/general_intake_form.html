@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>General Intake Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            line-height: 1.4;
+        }
+
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-top: 15px;
+        }
+
+        label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"] {
+            border: none;
+            border-bottom: 1px solid black;
+            width: 200px;
+        }
+
+        .line-input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid black;
+            margin-top: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 5px;
+            text-align: left;
+        }
+
+        .signature {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .signature div {
+            width: 45%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h3>Republic of the Philippines</h3>
+        <h3>Province of Bukidnon</h3>
+        <h2>City of Valencia</h2>
+        <h3>Office of the City Social Welfare & Development</h3>
+        <h3>Center-Based Social Services & Special Protection Division</h3>
+        <h2>GENERAL INTAKE FORM</h2>
+    </div>
+
+    <div class="section">
+        <label>Case Type:</label><br>
+        <label><input type="checkbox"> Child in Conflict with Law (CICL)</label><br>
+        <label><input type="checkbox"> Child in Need of Special Protection (CNSP)</label>
+        Sexually <input type="checkbox">
+        Physically <input type="checkbox">
+        Emotionally Abused <input type="checkbox"><br>
+        <label><input type="checkbox"> Child at Risk (CAR)</label><br>
+        <label><input type="checkbox"> Others:</label> <input type="text">
+    </div>
+
+    <div class="section">
+        <label>Name:</label> <input type="text">
+        <label>Contact No:</label> <input type="text"><br><br>
+
+        <label>Birthdate:</label> <input type="date">
+        <label>Birth Place:</label> <input type="text"><br><br>
+
+        <label>Gender:</label> <input type="text">
+        <label>Age:</label> <input type="number"><br><br>
+
+        <label>Educational Attainment:</label> <input type="text" style="width:300px;"><br><br>
+
+        <label>Permanent Address:</label>
+        <input class="line-input" type="text"><br><br>
+
+        <label>Temporary Address:</label>
+        <input class="line-input" type="text">
+    </div>
+
+    <div class="section">
+        <h3>FAMILY COMPOSITION</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Relationship</th>
+                <th>Occupation</th>
+                <th>Contact Number</th>
+                <th>Remarks</th>
+            </tr>
+            <tr>
+                <td colspan="6" height="30"></td>
+            </tr>
+            <tr>
+                <td colspan="6" height="30"></td>
+            </tr>
+            <tr>
+                <td colspan="6" height="30"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>PROBLEMS PRESENTED</h3>
+        <input class="line-input" type="text">
+        <input class="line-input" type="text">
+        <input class="line-input" type="text">
+    </div>
+
+    <div class="section">
+        <h3>BRIEF HISTORY</h3>
+        <input class="line-input" type="text">
+        <input class="line-input" type="text">
+        <input class="line-input" type="text">
+    </div>
+
+    <div class="section">
+        <h3>ACTION TAKEN / INTERVENTION</h3>
+        <input class="line-input" type="text">
+        <input class="line-input" type="text">
+    </div>
+
+    <div class="section">
+        <h3>RECOMMENDATION</h3>
+        <input class="line-input" type="text">
+        <input class="line-input" type="text">
+    </div>
+
+    <div class="signature">
+        <div>
+            ___________________________<br>
+            Client's Signature over Printed Name
+        </div>
+        <div>
+            ___________________________<br>
+            Parent's/Guardian's Signature over Printed Name
+        </div>
+    </div>
+
+    <div class="section">
+        <label>Attending Social Worker:</label>
+        <input type="text" style="width:300px;">
+    </div>
+
+</body>
+
+</html>

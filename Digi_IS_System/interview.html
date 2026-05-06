@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interviews & Assessments - CBSS&SPD</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="dashboard-body">
+
+    <!-- Sidebar Integration -->
+    <aside class="sidebar no-print">
+        <div class="sidebar-header">
+            <h2>CBSS&SPD Portal</h2>
+            <p>Information System</p>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-target="dashboard-section"><i class="ri-dashboard-line"></i> Dashboard</a>
+            <!-- New Active Item for Interviews -->
+            <a href="#" class="nav-item" data-target="interviews-container"><i class="ri-file-edit-line"></i>
+                Interviews Assessment</a>
+            <a href="#" class="nav-item" data-target="settings-section"><i class="ri-settings-3-line"></i> Setting</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-item text-danger"><i class="ri-logout-box-r-line"></i> Logout</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar no-print">
+            <div class="topbar-title">
+                <h1>Dashboard</h1>
+            </div>
+            <div class="topbar-profile">
+                <span>Welcome, Social Worker</span>
+                <div class="avatar">SW</div>
+            </div>
+        </header>
+
+        <div class="content-container">
+
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="tab-section">
+                <div class="intake-form">
+                    <h3 class="section-title">Dashboard Overview</h3>
+                    <p style="color: #6b7280; font-size: 14px; margin-bottom: 20px;">Welcome back to the Interview &
+                        Assessment portal.</p>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 24px;">
+                        <div
+                            style="background: #fff; padding: 24px; border-radius: 8px; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                            <h4 style="color: #6b7280; font-size: 14px; font-weight: 500; margin: 0;">Pending Interviews
+                            </h4>
+                            <p
+                                style="font-size: 32px; font-weight: 600; color: #f59e0b; margin-top: 12px; margin-bottom: 4px;">
+                                2</p>
+                        </div>
+                        <div
+                            style="background: #fff; padding: 24px; border-radius: 8px; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                            <h4 style="color: #6b7280; font-size: 14px; font-weight: 500; margin: 0;">Completed Today
+                            </h4>
+                            <p
+                                style="font-size: 32px; font-weight: 600; color: #10b981; margin-top: 12px; margin-bottom: 4px;">
+                                5</p>
+                        </div>
+                        <div
+                            style="background: #fff; padding: 24px; border-radius: 8px; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                            <h4 style="color: #6b7280; font-size: 14px; font-weight: 500; margin: 0;">Overdue</h4>
+                            <p
+                                style="font-size: 32px; font-weight: 600; color: #ef4444; margin-top: 12px; margin-bottom: 4px;">
+                                2</p>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+                        <div
+                            style="background: #fff; padding: 24px; border-radius: 8px; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                            <h4 style="color: #111827; font-size: 16px; font-weight: 600; margin-bottom: 20px;">
+                                Assessment Completion Trend</h4>
+                            <div style="position: relative; height: 300px;">
+                                <canvas id="completionTrendChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div
+                            style="background: #fff; padding: 24px; border-radius: 8px; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                            <h4 style="color: #111827; font-size: 16px; font-weight: 600; margin-bottom: 20px;">Pending
+                                Status by Case Type</h4>
+                            <div style="position: relative; height: 300px; display: flex; justify-content: center;">
+                                <canvas id="pendingTypeChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Case Records Section -->
+            <section id="case-records-section" class="tab-section" style="display: none;">
+                <div class="intake-form">
+                    <h3 class="section-title">Case Records Archive</h3>
+                    <p style="color: #6b7280; font-size: 14px; margin-bottom: 20px;">View historical case records and
+                        finalized Social Case Study Reports.</p>
+                    <div style="padding: 40px; text-align: center; border: 2px dashed #e5e7eb; border-radius: 8px;">
+                        <i class="ri-folder-open-line"
+                            style="font-size: 48px; color: #9ca3af; margin-bottom: 16px;"></i>
+                        <p style="color: #4b5563; font-weight: 500;">No archived records available in this view.</p>
+                        <p style="color: #9ca3af; font-size: 13px; margin-top: 8px;">Please check the main directory
+                            dashboard for historical data.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interviews Container -->
+            <div id="interviews-container" class="tab-section" style="display: none;">
+
+                <!-- Pending Cases List -->
+                <section id="pending-list-section">
+                    <div class="intake-form" style="max-width: 100%;">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 2px solid #f3f4f6; padding-bottom: 12px;">
+                            <h3 class="section-title" style="margin-bottom: 0; border: none; padding: 0;">Unfinished
+                                Intake
+                                Records</h3>
+                            <div>
+                                <input type="text" placeholder="Search pending cases..." class="form-control"
+                                    style="display: inline-block; width: auto; padding: 8px 12px; font-size: 13px;">
+                                <button class="btn-primary" style="padding: 8px 16px; margin-left: 8px;">Filter</button>
+                            </div>
+                        </div>
+
+                        <p style="color: #6b7280; font-size: 14px; margin-bottom: 20px;">Select a pending intake form to
+                            conduct the interview and draft the Background Information and Case Findings.</p>
+
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tracking No.</th>
+                                        <th>Client Name</th>
+                                        <th>Case Type</th>
+                                        <th>Current Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="color: #6b7280; font-size: 13px;">#FORM2-2023-001</td>
+                                        <td style="font-weight: 500; font-size: 14px;">Mark Bautista</td>
+                                        <td><span
+                                                style="background-color: #fca5a5; color: #7f1d1d; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 500;">CNSP</span>
+                                        </td>
+                                        <td><span style="color: #f59e0b; font-weight: 500; font-size: 13px;"><i
+                                                    class="ri-history-line"></i> Pending Assessment</span></td>
+                                        <td><button class="btn-primary conduct-interview-btn"
+                                                style="padding: 6px 12px; font-size: 13px;"><i
+                                                    class="ri-edit-2-line"></i>
+                                                Assess Case</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: #6b7280; font-size: 13px;">#FORM2-2023-002</td>
+                                        <td style="font-weight: 500; font-size: 14px;">Sarah Lim</td>
+                                        <td><span
+                                                style="background-color: #bfdbfe; color: #1e40af; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 500;">CAR</span>
+                                        </td>
+                                        <td><span style="color: #f59e0b; font-weight: 500; font-size: 13px;"><i
+                                                    class="ri-history-line"></i> Pending Assessment</span></td>
+                                        <td><button class="btn-primary conduct-interview-btn"
+                                                style="padding: 6px 12px; font-size: 13px;"><i
+                                                    class="ri-edit-2-line"></i>
+                                                Assess Case</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: #6b7280; font-size: 13px;">#FORM2-2023-003</td>
+                                        <td style="font-weight: 500; font-size: 14px;">John Doe</td>
+                                        <td><span
+                                                style="background-color: #fef08a; color: #854d0e; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 500;">CICL</span>
+                                        </td>
+                                        <td><span style="color: #ef4444; font-weight: 500; font-size: 13px;"><i
+                                                    class="ri-error-warning-line"></i> Overdue</span></td>
+                                        <td><button class="btn-primary conduct-interview-btn"
+                                                style="padding: 6px 12px; font-size: 13px;"><i
+                                                    class="ri-edit-2-line"></i>
+                                                Assess Case</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: #6b7280; font-size: 13px;">#FORM2-2023-004</td>
+                                        <td style="font-weight: 500; font-size: 14px;">Jane Santos</td>
+                                        <td><span
+                                                style="background-color: #d1fae5; color: #065f46; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 500;">CNSP</span>
+                                        </td>
+                                        <td><span style="color: #10b981; font-weight: 500; font-size: 13px;"><i
+                                                    class="ri-check-line"></i> Completed</span></td>
+                                        <td><button class="btn-outline view-completed-btn"
+                                                style="padding: 6px 12px; font-size: 13px;" onclick="alert('Success: This completed case has been downloaded!')"><i
+                                                    class="ri-eye-line"></i>
+                                                View Case</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interview / Assessment Form Section (Hidden by Default) -->
+                <section id="interview-form-section" style="display: none;">
+                    <div class="intake-form">
+                        <div
+                            style="margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between;">
+                            <button id="back-to-list" class="btn-outline">← Back to Pending List</button>
+                            <h3 class="section-title" style="margin: 0; padding: 0; border: none;">Conduct Case
+                                Assessment
+                            </h3>
+                        </div>
+
+                        <!-- Client Profile Context -->
+                        <div
+                            style="background-color: #f9fafb; padding: 16px; border-radius: 8px; margin-bottom: 24px; border: 1px solid #e5e7eb;">
+                            <h4 style="font-size: 14px; color: #374151; margin-bottom: 8px;">Context Data (Auto-filled
+                                from
+                                Intake)</h4>
+                            <div style="display: flex; gap: 40px;">
+                                <div><span style="color: #6b7280; font-size: 12px; display: block;">Tracking No:</span>
+                                    <strong id="tracking-no" style="font-size: 14px; color: #111827;"></strong>
+                                </div>
+                                <div><span style="color: #6b7280; font-size: 12px; display: block;">Name:</span> <strong
+                                        id="client-name" style="font-size: 14px; color: #111827;"></strong></div>
+                                <div><span style="color: #6b7280; font-size: 12px; display: block;">Case Type:</span>
+                                    <strong id="case-type" style="font-size: 14px; color: #111827;"></strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Input Forms -->
+                        <form action="#" method="POST">
+
+                            <div class="form-section">
+                                <h4 style="font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 8px;">
+                                    IV.
+                                    BACKGROUND INFORMATION</h4>
+                                <textarea class="form-control" rows="8"
+                                    placeholder="Enter background information here... Be as specific as possible regarding the client's past situations and any relevant familial history."></textarea>
+                            </div>
+
+                            <div class="form-section" style="margin-top: 40px;">
+                                <h4 style="font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 8px;">
+                                    V.
+                                    CASE FINDINGS / ASSESSMENT</h4>
+                                <textarea class="form-control" rows="8"
+                                    placeholder="Enter case findings and assessment here... Outline physical or psychological observations."></textarea>
+                            </div>
+
+                            <!-- Submit Actions -->
+                            <div class="form-actions"
+                                style="border-top: 1px solid #e5e7eb; padding-top: 24px; margin-top: 40px;">
+                                <button type="button" class="btn-primary"
+                                    onclick="alert('Success: Assessment finalized and Social Case Study Report has been successfully generated!')">Finalize
+                                    Assessment</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </section>
+            </div> <!-- End of Interviews Container -->
+
+            <!-- Settings Section -->
+            <section id="settings-section" class="tab-section" style="display: none;">
+                <div class="intake-form" style="max-width: 800px; margin: 0 auto;">
+                    <h3 class="section-title" style="margin-bottom: 30px;">Account Settings</h3>
+
+                    <form action="#" method="POST" id="settingsForm">
+
+                        <!-- Profile Image Area -->
+                        <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
+                            <div class="avatar" style="width: 80px; height: 80px; font-size: 24px;">SW</div>
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: 500; margin-bottom: 8px;">Profile Picture</h4>
+                                <div style="display: flex; gap: 12px;">
+                                    <button type="button" class="btn-primary"
+                                        style="padding: 6px 12px; font-size: 13px;">Upload New</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Personal Details -->
+                        <h4
+                            style="font-size: 14px; font-weight: 600; margin-bottom: 16px; color: #374151; border-bottom: 1px solid #f3f4f6; padding-bottom: 8px;">
+                            Personal Details</h4>
+                        <div class="form-grid" style="margin-bottom: 30px;">
+                            <div class="form-group span-2">
+                                <label>Full Name</label>
+                                <input type="text" class="form-control" value="Social Worker Name">
+                            </div>
+                            <div class="form-group span-2">
+                                <label>Email Address</label>
+                                <input type="email" class="form-control" value="socialworker@cbss.gov.ph">
+                            </div>
+                            <div class="form-group span-2">
+                                <label>Role</label>
+                                <input type="text" class="form-control" value="Staff" readonly
+                                    style="background-color: #f9fafb; color: #6b7280; cursor: not-allowed;">
+                            </div>
+                            <div class="form-group span-2">
+                                <label>Phone Number</label>
+                                <input type="tel" class="form-control" value="+63 912 345 6789">
+                            </div>
+                        </div>
+
+                        <!-- Security -->
+                        <h4
+                            style="font-size: 14px; font-weight: 600; margin-bottom: 16px; color: #374151; border-bottom: 1px solid #f3f4f6; padding-bottom: 8px;">
+                            Change Password</h4>
+                        <div class="form-grid" style="margin-bottom: 30px;">
+                            <div class="form-group span-4">
+                                <label>Current Password</label>
+                                <input type="password" class="form-control" placeholder="••••••••">
+                            </div>
+                            <div class="form-group span-2">
+                                <label>New Password</label>
+                                <input type="password" class="form-control" placeholder="••••••••">
+                            </div>
+                            <div class="form-group span-2">
+                                <label>Confirm New Password</label>
+                                <input type="password" class="form-control" placeholder="••••••••">
+                            </div>
+                        </div>
+
+                        <!-- Notifications -->
+                        <!-- Actions -->
+                        <div class="form-actions" style="border-top: 1px solid #e5e7eb; padding-top: 24px;">
+                            <button type="button" class="btn-secondary">Cancel Changes</button>
+                            <button type="button" class="btn-primary"
+                                onclick="alert('Settings have been saved successfully!');">Save Settings</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        // Tab Navigation Logic
+        const navItems = document.querySelectorAll('.sidebar-nav .nav-item[data-target]');
+        const tabSections = document.querySelectorAll('.content-container > .tab-section, .content-container > div.tab-section');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                navItems.forEach(nav => nav.classList.remove('active'));
+                tabSections.forEach(section => section.style.display = 'none');
+
+                item.classList.add('active');
+                const targetId = item.getAttribute('data-target');
+                if (targetId) document.getElementById(targetId).style.display = 'block';
+
+                // Update topbar title
+                document.querySelector('.topbar-title h1').innerText = item.textContent.trim();
+            });
+        });
+
+        // Toggle view logic for Interviews
+        const assessBtns = document.querySelectorAll('.conduct-interview-btn');
+        const listSection = document.getElementById('pending-list-section');
+        const formSection = document.getElementById('interview-form-section');
+        const backBtn = document.getElementById('back-to-list');
+
+        assessBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // Read row data dynamically
+                const row = e.target.closest('tr');
+                const trackingId = row.cells[0].innerText;
+                const clientName = row.cells[1].innerText;
+                const caseType = row.cells[2].innerText;
+
+                // Populate form header contextual text
+                document.getElementById('tracking-no').innerText = trackingId;
+                document.getElementById('client-name').innerText = clientName;
+                document.getElementById('case-type').innerText = caseType;
+
+                // Toggle visibility
+                listSection.style.display = 'none';
+                formSection.style.display = 'block';
+            });
+        });
+
+        // Back to list action
+        if (backBtn) {
+            backBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                formSection.style.display = 'none';
+                listSection.style.display = 'block';
+            });
+        }
+
+        // Initialize Assessment Charts
+        document.addEventListener("DOMContentLoaded", function () {
+            const trendCtx = document.getElementById('completionTrendChart');
+            const pendingCtx = document.getElementById('pendingTypeChart');
+
+            if (trendCtx && pendingCtx) {
+                // Line Chart for Completion Trend
+                new Chart(trendCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        datasets: [{
+                            label: 'Assessments Completed',
+                            data: [3, 5, 2, 8, 4, 1, 5],
+                            borderColor: '#0038a8',
+                            backgroundColor: 'rgba(0, 56, 168, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 4,
+                            pointBackgroundColor: '#fff',
+                            pointBorderColor: '#0038a8'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: { beginAtZero: true, grid: { color: '#f3f4f6', drawBorder: false } },
+                            x: { grid: { display: false, drawBorder: false } }
+                        }
+                    }
+                });
+
+                // Doughnut Chart for Pending Case Types
+                new Chart(pendingCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['CICL', 'CNSP', 'CAR', 'Others'],
+                        datasets: [{
+                            data: [10, 8, 4, 2],
+                            backgroundColor: ['#fef08a', '#fca5a5', '#bfdbfe', '#e5e7eb'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                                labels: { boxWidth: 12, padding: 20, font: { size: 12 } }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+    </script>
+</body>
+
+</html>
